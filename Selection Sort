@@ -1,15 +1,13 @@
 #include <iostream>
 using namespace std;
-void
-swape (int arr[], int i, int j)
+void swape (int arr[], int i, int j)
 {
   int temp = arr[i];
   arr[i] = arr[j];
   arr[j] = temp;
 }
 
-void
-selectionSort (int arr[], int size)
+void selectionSort (int arr[], int size)
 {
   for (int i = 0; i < size; i++)
     {
@@ -23,8 +21,7 @@ selectionSort (int arr[], int size)
     }
 }
 
-int
-main ()
+int main ()
 {
   int array[9] = { 9,8,7,6,5,4,3,2,1};
   selectionSort (array, 9);
