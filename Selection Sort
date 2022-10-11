@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+void
+swape (int arr[], int i, int j)
+{
+  int temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+}
+
+void
+selectionSort (int arr[], int size)
+{
+  for (int i = 0; i < size; i++)
+    {
+      int min = i;
+      for (int j = i + 1; j < size; j++)
+	{
+	  if (arr[min] > arr[j])
+	    min = j;
+	}
+      swape (arr, i, min);
+    }
+}
+
+int
+main ()
+{
+  int array[9] = { 9,8,7,6,5,4,3,2,1};
+  selectionSort (array, 9);
+
+  for (int i = 0; i < 9; i++)
+    cout << array[i] << "\t";
+
+  return 0;
+}
