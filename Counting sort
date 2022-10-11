@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+int max(int arr[],int size)
+{
+    int max=arr[0];
+    for(int i=1;i<size;i++)
+    {
+        if(max<arr[i])
+        max=arr[i];
+    }
+    return max;
+}
+void countingSort (int arr[], int size)
+{
+  int k=max(arr,size);
+  int*temp=new int[k+1];
+  for(int i=0;i<size;i++)
+  {
+      temp[arr[i]]++;
+  }
+  int index=0;
+  for(int i=0;i<(k+1);i++)
+  {
+      if(temp[i]!=0)
+      {
+          while(temp[i]>0)
+          {
+              arr[index]=i;
+              index++;
+              temp[i]--;
+          }
+      }
+  }
+}
+
+int main ()
+{
+  int array[9] = { 9,8,7,6,5,4,3,2,1};
+  int arr[13]={12,100,1,3,6,99,1111,99,1,1,3,3,99};
+  countingSort (array, 9);
+  countingSort(arr,13);
+  
+  for (int i = 0; i < 9; i++)
+    cout << array[i] << "\t";
+    
+    cout<<endl;
+    
+     for (int i = 0; i < 13; i++)
+    cout << arr[i] << "\t";
+
+  return 0;
+}
