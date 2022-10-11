@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+void rightShifting (int arr[], int start, int end)
+{
+  for(int i=end;i>start;i--)
+  {
+      arr[i]=arr[i-1];
+  }
+}
+
+void insertionSort (int arr[], int size)
+{
+  for (int i = 0; i < size; i++)
+    {
+      int Eindex = i;
+      int current=arr[i];
+      int Sindex=0;
+      while((arr[Sindex] <= arr[i])&&(Sindex!=i))   //finding starting index for right shift
+      {
+          Sindex++;
+      }
+     if(Sindex!=i)
+      rightShifting(arr,Sindex,Eindex);
+      arr[Sindex]=current;
+    }
+}
+
+int
+main ()
+{
+  int array[9] = { 9,8,7,6,5,4,3,2,1};
+  int arr[9]={12,100,-1,3,6,99,1111,-99,0};
+  insertionSort (array, 9);
+  insertionSort(arr,9);
+  
+  for (int i = 0; i < 9; i++)
+    cout << array[i] << "\t";
+    
+    cout<<endl;
+    
+     for (int i = 0; i < 9; i++)
+    cout << arr[i] << "\t";
+
+  return 0;
+}
