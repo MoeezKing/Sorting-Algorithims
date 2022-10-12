@@ -1,0 +1,108 @@
+/*      Procedure
+Step 1: Take the elements input in an array.
+Step 2: Create a Binary search tree by inserting data items from the array into the binary search tree.
+Step 3: Perform in-order traversal on the tree to get the elements in sorted order.*/
+
+#include <iostream>
+#include<vector>
+using namespace std;
+class Node
+{
+public:
+    int data;
+    Node* left;
+    Node* right;
+    Node(int data = -9999, Node* left = NULL, Node* right = NULL)
+    {
+        this->data = data;
+        this->left = left;
+        this->right = right;
+    }
+    
+};
+class Tree
+{
+  public:
+  Node* root;
+  Tree(Node* root=NULL)
+  {
+      this->root=root;
+  }
+     Node* insert(Node* apex, int val) //insert function through recursion
+    {
+        if (apex == NULL)
+            return new Node(val);
+
+        if (val < apex->data)
+            apex->left = insert(apex->left, val);
+        else
+            apex->right = insert(apex->right, val);
+
+        return apex;
+    }
+    bool find(int value)
+    {
+        Node* current = root;
+        while (current != NULL)
+        {
+            if (value < current->data)
+            {
+                current = current->left;
+            }
+            else if (value > current->data)
+            {
+                current = current->right;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    void insert(int val)//overloading
+    {
+        if(!(find(val)))
+        root = insert(root, val);
+    }
+    void sort(Node* apex,vector<int> &v)    //In-Order traverse
+    {
+        if(apex==NULL)
+            return;
+            
+        sort(apex->left,v);
+        v.push_back(apex->data);
+        sort(apex->right,v);
+    }
+    void treeSort(int arr[],int size)
+    {
+        Tree t1;
+        for(int i=0;i<size;i++)
+            t1.insert(arr[i]);
+        
+         vector<int> vec;
+         sort(t1.root,vec);    
+        
+        for(int i=0;i<size;i++)
+            arr[i]=vec[i];
+    }
+};
+int main ()
+{
+    Tree t;
+  int array[9] = { 9,8,7,6,5,4,3,2,1};
+  int arr[13]={99,88,66,55,89,123,543,35,3,10,11,1234,9};
+  t.treeSort (array, 9);
+  cout<<endl;
+  t.treeSort(arr,13);
+  cout<<endl;
+  for (int i = 0; i < 9; i++)
+    cout << array[i] << "\t";
+    
+    cout<<endl;
+    
+     for (int i = 0; i < 13; i++)
+    cout << arr[i] << "\t";
+
+  return 0;
+}
